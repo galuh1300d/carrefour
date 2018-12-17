@@ -1,0 +1,63 @@
+<%- include('header') %>
+
+  <h2 class="page-title my-4">Edit Halaman</h2>
+  <a href="/adminTC_1919" class="btn btn-primary mb-4">Kembali ke Semua Halaman</a>
+
+  <form class="mb-5" method="post" action="/adminTC_1919/edit-halaman/<%= id %>" enctype="multipart/form-data" autocomplete="off">
+    <div class="form-group">
+      <label>Title</label>
+      <input class="form-control" type="text" name="title" value="<%= title %>" placeholder="title">
+    </div>
+
+    <div class="form-group">
+      <label>Slug</label>
+      <input class="form-control" type="text" name="slug" value="<%= slug %>" placeholder="slug">
+    </div>
+
+    <div class="form-group">
+      <label for="">Current Image</label>
+      <p>
+          <% if (image == "") { %>
+          <img class="w-25" id="noimage" src="/gambar/noimage.png" alt="noimage">
+          <% } else {%>
+          <img class="w-25" id="noimage" src="/gambar/<%= id %>/<%= image %>" alt="noimage">
+          <% } %>
+      </p>
+    </div>
+
+    <div class="form-group">
+      <label for="">Upload Image</label>
+      <input type="file" class="form-control" name="image" id="img">
+      <img class="my-3" src="#" id="imgPreview" alt="imgPreview">
+    </div>
+
+    <div class="form-group">
+      <label>Deskripsi</label>
+      <textarea name="desc" class="form-control" id="ta" cols="30" rows="10" placeholder="description"><%= desc %></textarea>
+    </div>
+
+    <input type="hidden" name="pimage" value="<%= image %>">
+    <button class="btn btn-default">Submit</button>
+  </form>
+
+  <script>
+    
+      function readURL(input) {
+          if (input.files && input.files[0]) {
+              var reader = new FileReader();
+              
+              reader.onload = function(e) {
+                  $("#imgPreview").attr('src', e.target.result).width(100).height(100);
+              }
+              
+              reader.readAsDataURL(input.files[0]);
+          }
+      }
+      
+      $("#img").change(function() {
+          readURL(this);
+      });
+      
+  </script>
+
+<%- include('footer') %>

@@ -1,0 +1,27 @@
+<% include header %>
+
+<h2 class="page-title my-4">Halaman</h2>
+<a href="/adminTC_1919/tambah-halaman" class="btn btn-primary mb-4">Tambah Halaman Baru</a>
+
+<table class="table table-striped sorting">
+  <thead>
+    <tr class="home">
+      <th>Title</th>
+      <th>Edit</th>
+      <th>Delete</th>
+      <th>Preview</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% halaman.forEach(function(halaman) { %>
+      <tr id="id_<%= halaman._id %>" class="<%= halaman.slug %>">
+        <td><%= halaman.title %></td>
+        <td><a href="/adminTC_1919/edit-halaman/<%= halaman._id %>">Edit</a></td>
+        <td><a class="confirmDeletion" href="/adminTC_1919/hapus-halaman/<%= halaman._id %>">Delete</a></td>
+        <td><a href="http://localhost:5000/cms/<%= halaman.slug %>" target="_blank">Preview</a></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<% include footer %>
